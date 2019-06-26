@@ -53,5 +53,13 @@
     </div>
   </div>
 </nav>
+<div class="containter">
+	<div class="jumbotron">
+	 	<div class="page_header">
+	 		<h3> 환영합니다.</br>지역을 등록하고 편리하게 날씨를 확인하세요 </h3>
+	 		<h3> 세계 모든 지역의 날씨를 등록할수 있습니다. </h3>
+	 	</div>
+	 </div>
+	 </div>
 </body>
 </html>

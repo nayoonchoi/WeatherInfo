@@ -16,7 +16,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <title>날씨 정보</title>
-<script>
+
+</head>
+
+<body>
+	<%@include file="navbar.jsp"%>
+	<div class="container">
+	
+	
+	 </div>
+        <script>
 		$(function() {
 			<%
 				String memberId=(String)session.getAttribute("id");
@@ -25,78 +34,75 @@
 				
 				for(int i=0;i<citylist.size();i++){
 			%>
+			
+				
 			var apiURI = "http://api.openweathermap.org/data/2.5/weather?q="
 				+ "<%=citylist.get(i)%>"
 				+ "&appid=825324af24a5271880fc0ad9ecb83fbf&lang=kr";
-			$(document).ready(function() {
+			 {
+				var container=document.getElementsByClassName("container");
 				$.ajax(apiURI)
 				.done(function(resp) {
-					alert("요청 성공");
-				
-					var h = document
-					.getElementById("text");
-			//h.innerHTML = "";
-			h
-					.insertAdjacentHTML(
-							"beforeend",
+					console.log(resp);
+					var newpanel=document.createElement("div");
+					newpanel.className="panel panel-default";
+					var panel_head=document.createElement("div");
+					panel_head.className="panel-heading";
+					
+					
+					var panel_body=document.createElement("div");
+					panel_body.className="panel-body";
+					container[0].insertAdjacentElement("beforeend",newpanel);
+					newpanel.insertAdjacentElement("beforeend",panel_head);
+					newpanel.insertAdjacentElement("beforeend",panel_body);
+					var h= document.getElementsByClassName("panel-body");
+					var h1= document.getElementsByClassName("panel-heading");
+					
+			  	panel_body.insertAdjacentHTML("beforeend",
 							"<p>현재온도 : "
 									+ (resp.main.temp - 273.15)
 									+ "</p>");
-			h
-					.insertAdjacentHTML(
+			  	panel_body.insertAdjacentHTML(
 							"beforeend",
 							"<p>현재습도 : "
 									+ resp.main.humidity
 									+ "</p>");
-			h
-					.insertAdjacentHTML(
+			  	panel_body.insertAdjacentHTML(
 							"beforeend",
 							"<p>날씨 : "
 									+ resp.weather[0].main
 									+ "</p>");
-			h
-					.insertAdjacentHTML(
+			  	panel_body.insertAdjacentHTML(
 							"beforeend",
 							"<p>상세날씨설명 : "
 									+ resp.weather[0].description
 									+ "</p>");
-			h
-					.insertAdjacentHTML(
+			  	panel_body.insertAdjacentHTML(
 							"beforeend",
 							"<p>날씨 이미지 : "
 									+ resp.weather[0].icon
 									+ "</p>");
-			h.insertAdjacentHTML("beforeend",
+			  	panel_body.insertAdjacentHTML("beforeend",
 					"<p>바람   : "
 							+ resp.wind.speed
 							+ "</p>");
-			h.insertAdjacentHTML("beforeend",
+			  	panel_head.insertAdjacentHTML("beforeend",
 					"<p>나라   : "
 							+ resp.sys.country
-							+ "</p>");
-			h.insertAdjacentHTML("beforeend",
-					"<p>도시이름  : " + resp.name
-							+ "</p>");
-			h.insertAdjacentHTML("beforeend",
-					"<p>구름  : "
-							+ (resp.clouds.all)
-							+ "%" + "</p>");
+							+ "</p>"); 
+			  	panel_head.insertAdjacentHTML("beforeend","<p>도시이름  : " + resp.name+ "</p>");
+			panel_body.insertAdjacentHTML("beforeend","<p>구름  : "+ (resp.clouds.all)+ "%" + "</p>"); 
+			
+			
 				})
+				
 				.fail(function() {
 					alert("요청 실패");
 				})
-				
-			});<%}%>
+				 
+			}<%}%>
 		});
 	</script>
-</head>
-
-<body>
-	<%@include file="navbar.jsp"%>
-
-	<p id="text"></p>
-	 
-        
 	
 </body>
 </html>
