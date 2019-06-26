@@ -12,115 +12,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
-<script>
-	$(function() {
-
-		$(document).on(
-				"change",
-				"select[name='country']",
-				function() {
-
-					var selectedcountry = $(this).val();
-
-					$.getJSON("file.json", function(data) {
-
-						var cityList = new Array();
-						//읽어들인 데이터를 모두 순회하면서 해당되는 country의 city 리스트를 가져옴
-						var index;
-						for (var j = 0; j < data.length; j++) {
-							if (data[j].country == selectedcountry) {
-								index = j;
-								break;
-							}
-						}
-						cityList = data[index].city;
-
-						var items = [];
-						items.push("<option selected>City</option>");
-
-						for (var k = 0; k < cityList.length; k++) {
-							items.push("<option value='"+cityList[k]+"'>"
-									+ cityList[k] + "</option>");
-						}
-						items.sort();
-						$("select[name='city']").html(items);
-					});
-
-				});
-
-		$(document)
-				.on(
-						"change",
-						"select[name='city']",
-						function() {
-
-							var city = $(this).val();
-
-							var apiURI = "http://api.openweathermap.org/data/2.5/weather?q="
-									+ city
-									+ "&appid=825324af24a5271880fc0ad9ecb83fbf&lang=kr";
-							$
-									.ajax({
-										url : apiURI,
-										dataType : "json",
-										type : "GET",
-										async : "false",
-										success : function(resp) {
-											var h = document
-													.getElementById("weatherinfo");
-											h.innerHTML = "";
-											h
-													.insertAdjacentHTML(
-															"beforeend",
-															"<p>현재온도 : "
-																	+ (resp.main.temp - 273.15)
-																	+ "</p>");
-											h
-													.insertAdjacentHTML(
-															"beforeend",
-															"<p>현재습도 : "
-																	+ resp.main.humidity
-																	+ "</p>");
-											h
-													.insertAdjacentHTML(
-															"beforeend",
-															"<p>날씨 : "
-																	+ resp.weather[0].main
-																	+ "</p>");
-											h
-													.insertAdjacentHTML(
-															"beforeend",
-															"<p>상세날씨설명 : "
-																	+ resp.weather[0].description
-																	+ "</p>");
-											h
-													.insertAdjacentHTML(
-															"beforeend",
-															"<p>날씨 이미지 : "
-																	+ resp.weather[0].icon
-																	+ "</p>");
-											h.insertAdjacentHTML("beforeend",
-													"<p>바람   : "
-															+ resp.wind.speed
-															+ "</p>");
-											h.insertAdjacentHTML("beforeend",
-													"<p>나라   : "
-															+ resp.sys.country
-															+ "</p>");
-											h.insertAdjacentHTML("beforeend",
-													"<p>도시이름  : " + resp.name
-															+ "</p>");
-											h.insertAdjacentHTML("beforeend",
-													"<p>구름  : "
-															+ (resp.clouds.all)
-															+ "%" + "</p>");
-										}
-									})
-
-						});
-
-	});
-</script>
+<script lang="JavaScript" src="getWeatherList.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -133,8 +25,9 @@
 			<form action="registerArea" method="post">
 				<div class="col-xs-12">
 
-
+					<!-- 국가목록 -->
 					<select class="form-control" name="country" id="country">
+
 						<option selected>Country</option>
 						<option value="AD">안도라</option>
 						<option value="AE">아랍에미리트 연합</option>
@@ -410,13 +303,6 @@
 						<option selected>City</option>
 					</select>
 				</div>
-
-
-
-
-
-
-
 				<div class="col-xs-12">
 					<button type="submit" class="btn btn-default">등록</button>
 				</div>
