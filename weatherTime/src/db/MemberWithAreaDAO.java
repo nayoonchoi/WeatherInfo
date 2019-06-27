@@ -64,7 +64,7 @@ public class MemberWithAreaDAO {
 	}
 public void DeleteRegisteredArea(String memberId, String area) {
 		
-		ArrayList<String> dtos = new ArrayList<String>();
+		
 		
 		Connection con =null;
 		PreparedStatement pstmt = null;
