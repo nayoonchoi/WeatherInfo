@@ -62,7 +62,7 @@ public class MemberWithAreaDAO {
 		
 		return dtos;
 	}
-public int DeleteRegisteredArea(String memberId, String area) {
+public void DeleteRegisteredArea(String memberId, String area) {
 		
 		ArrayList<String> dtos = new ArrayList<String>();
 		
@@ -92,6 +92,6 @@ public int DeleteRegisteredArea(String memberId, String area) {
 			}
 		}
 		
-		return dtos;
+		
 	}
 }
