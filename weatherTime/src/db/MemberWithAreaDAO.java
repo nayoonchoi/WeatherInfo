@@ -62,4 +62,36 @@ public class MemberWithAreaDAO {
 		
 		return dtos;
 	}
+public int DeleteRegisteredArea(String memberId, String area) {
+		
+		ArrayList<String> dtos = new ArrayList<String>();
+		
+		Connection con =null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="delete from MemberWithArea where id=? and area=?";
+		
+		try {
+			con = DriverManager.getConnection(url, uid, upw);
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, area);
+
+			rs = pstmt.executeQuery();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return dtos;
+	}
 }

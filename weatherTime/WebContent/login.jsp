@@ -12,8 +12,9 @@
 </head>
 <body>
 <%@include file="navbar.jsp"%>
-<div class=contianer>
-<div class=col-xs-12>
+<div class="container">
+<div class="row">
+<div class="col-xs-12">
 	<form action="LoginOk" method="post">
   <div class="form-group">
     <label for="id">ID:</label>
@@ -28,6 +29,7 @@
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
+</div>
 </div>
 </div>
 </body>

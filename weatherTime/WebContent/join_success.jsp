@@ -12,11 +12,15 @@
 </head>
 <body>
 <%@include file="navbar.jsp"%>
-	 <div class="containter">
+	 <div class="container">
+	 <div class="row">
+	 <div class="col-xs-12">
 	<div class="jumbotron">
 	 	<div class="page_header">
 	 		<h3> 가입을 축하합니다.</h3>
 	 	</div>
+	 </div>
+	 </div>
 	 </div>
 	 </div>
 </body>
