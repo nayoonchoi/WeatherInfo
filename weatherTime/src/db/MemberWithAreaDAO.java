@@ -39,7 +39,7 @@ public class MemberWithAreaDAO {
 //			//ps.setString(1, memberId);
 			
 			rs = pstmt.executeQuery();
-			System.out.println(rs.getMetaData().getColumnCount());
+			
 			while (rs.next()) {
 				String area = rs.getString("area");
 					
@@ -69,16 +69,20 @@ public void DeleteRegisteredArea(String memberId, String area) {
 		Connection con =null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql="delete from MemberWithArea where id=? and area=?";
+		String sql="delete from MemberWithArea where id=? and area like '%"+area+"%'";
 		
 		try {
 			con = DriverManager.getConnection(url, uid, upw);
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, memberId);
-			pstmt.setString(2, area);
-
-			rs = pstmt.executeQuery();
 			
+			//rs = pstmt.executeQuery();
+			int rsnum=pstmt.executeUpdate();
+			System.out.println(rsnum);
+			System.out.println(memberId);
+			System.out.println(area);
+			
+			//if(rs!=null)System.out.println("¼º°ø");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

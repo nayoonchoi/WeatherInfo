@@ -91,6 +91,7 @@
 							+ resp.sys.country
 							+ "</p>"); 
 			  	panel_head.insertAdjacentHTML("beforeend","<p>도시이름  : " + resp.name+ "</p>");
+			  	panel_head.insertAdjacentHTML("beforeend","<form action='\DeleteInfo'method='post'> <input type='hidden' id='id' name='id' value=<%=citylist.get(i)%> ><input type='hidden' id='area' name='area' value=<%=memberId%> size=20><button type='submit'><span class='glyphicon glyphicon-remove'></span></button></form>");
 			panel_body.insertAdjacentHTML("beforeend","<p>구름  : "+ (resp.clouds.all)+ "%" + "</p>"); 
 			
 			

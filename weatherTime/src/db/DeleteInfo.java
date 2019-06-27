@@ -1,8 +1,7 @@
 package db;
 
 import java.io.IOException;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,7 +52,7 @@ private void actionDo(HttpServletRequest request, HttpServletResponse response) 
 		} finally {
 			// TODO: handle finally clause
 		}
-		
+		response.sendRedirect("display_weather.jsp");
 		
 	
 	}
