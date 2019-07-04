@@ -38,7 +38,7 @@
 				
 			var apiURI = "http://api.openweathermap.org/data/2.5/weather?q="
 				+ "<%=citylist.get(i)%>"
-				+ "&appid=825324af24a5271880fc0ad9ecb83fbf&lang=kr";
+				+ "&appid=";
 			 {
 				var container=document.getElementsByClassName("container");
 				$.ajax(apiURI)
